@@ -81,7 +81,7 @@ endButton.disabled = true;
 
 function startRecording() {
 	startButton.disabled = true;
-	endButton.disabled = true;
+	endButton.disabled = false;
 	initRecording();
 }
 

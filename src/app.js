@@ -31,6 +31,11 @@ app.get('/', function (req, res) {
     res.render('index', {});
 });
 
+app.get('/:lang', function (req, res) {
+	request.config.languageCode = req.params.lang;
+    res.render('index', {});
+});
+
 app.use('/', function (req, res, next) {
     next(); // console.log(`Request Url: ${req.url}`);
 });
@@ -101,13 +106,12 @@ io.on('connection', function (client) {
 // The BCP-47 language code to use, e.g. 'en-US'
 const encoding = 'LINEAR16';
 const sampleRateHertz = 16000;
-const languageCode = 'en-US'; //en-US
 
 const request = {
     config: {
         encoding: encoding,
         sampleRateHertz: sampleRateHertz,
-        languageCode: languageCode,
+        languageCode: 'en-US',
         profanityFilter: false,
         enableWordTimeOffsets: true
     },
