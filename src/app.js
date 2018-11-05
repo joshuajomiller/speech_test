@@ -52,18 +52,22 @@ io.on('connection', function (client) {
     });
 
     client.on('messages', function (data) {
+        console.log('messages');
         client.emit('broad', data);
     });
 
     client.on('startGoogleCloudStream', function (data) {
+        console.log('startGoogleCloudStream');
         startRecognitionStream(this, data);
     });
 
     client.on('endGoogleCloudStream', function (data) {
+        console.log('endGoogleCloudStream');
         stopRecognitionStream();
     });
 
     client.on('binaryData', function (data) {
+        console.log('binaryData');
         // console.log(data); //log binary data
         if (recognizeStream !== null) {
             recognizeStream.write(data);
