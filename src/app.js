@@ -31,11 +31,6 @@ app.get('/', function (req, res) {
     res.render('index', {});
 });
 
-app.get('/:lang', function (req, res) {
-	request.config.languageCode = req.params.lang;
-    res.render('index', {});
-});
-
 app.use('/', function (req, res, next) {
     next(); // console.log(`Request Url: ${req.url}`);
 });
@@ -52,22 +47,18 @@ io.on('connection', function (client) {
     });
 
     client.on('messages', function (data) {
-        console.log('messages');
         client.emit('broad', data);
     });
 
     client.on('startGoogleCloudStream', function (data) {
-        console.log('startGoogleCloudStream');
         startRecognitionStream(this, data);
     });
 
     client.on('endGoogleCloudStream', function (data) {
-        console.log('endGoogleCloudStream');
         stopRecognitionStream();
     });
 
     client.on('binaryData', function (data) {
-        console.log('binaryData');
         // console.log(data); //log binary data
         if (recognizeStream !== null) {
             recognizeStream.write(data);
