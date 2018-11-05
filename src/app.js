@@ -40,7 +40,7 @@ app.use('/', function (req, res, next) {
 io.on('connection', function (client) {
     console.log('Client Connected to server');
     let recognizeStream = null;
-    const speechClient = new speech.SpeechClient(); // Creates a client
+    const speechClient = new speech.v1p1beta1(); // Creates a client
 
     client.on('join', function (data) {
         client.emit('messages', 'Socket Connected to Server');
