@@ -10,7 +10,7 @@ const fs = require('fs');
 const environmentVars = require('dotenv').config();
 
 // Google Cloud
-const speech = require('@google-cloud/speech');
+const { speech } = require('@google-cloud/speech');
 const speechClient = new speech.SpeechClient(); // Creates a client
 
 
