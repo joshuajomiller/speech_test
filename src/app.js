@@ -11,6 +11,7 @@ const environmentVars = require('dotenv').config();
 
 // Google Cloud
 const speech = require('@google-cloud/speech');
+const speechClient = new speech.SpeechClient(); // Creates a client
 
 
 const app = express();
@@ -40,7 +41,6 @@ app.use('/', function (req, res, next) {
 io.on('connection', function (client) {
     console.log('Client Connected to server');
     let recognizeStream = null;
-    const speechClient = speech.v1p1beta1(); // Creates a client
 
     client.on('join', function (data) {
         client.emit('messages', 'Socket Connected to Server');
